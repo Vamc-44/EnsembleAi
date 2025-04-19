@@ -1,0 +1,14 @@
+import torch.nn as nn
+
+class LinearMNISTNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.flatten = nn.Flatten()
+        self.fc1 = nn.Linear(28 * 28 * 3, 1024)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(1024, 10)
+
+    def forward(self, x):
+        x = self.flatten(x)
+        x = self.relu(self.fc1(x))
+        return self.fc2(x)
